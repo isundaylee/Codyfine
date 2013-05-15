@@ -24,7 +24,12 @@
 @synthesize closeButton;
 @synthesize miniaturizeButton; 
 
-@synthesize controller; 
+@synthesize controller;
+
+- (void)viewDidMoveToWindow
+{
+    NSLog(@"Moved to window. ");
+}
 
 - (void)setMessage:(NSString *)message
 {
@@ -63,25 +68,7 @@
         // This line is creepy. But I guess the one that designed the ACEView Cocoa intended to only let it work through NIB-loading?
         [[self codeView] awakeFromNib];
         
-        NSString *sampleCodes = [NSString stringWithFormat:
-                                 @"\n"
-                                 "/*\n"
-                                 " * Just a simple editor that does not know how to sell meng :) \n"
-                                 " */\n"
-                                 "\n"
-                                 "#include <stdio.h>\n"
-                                 "#include <stdlib.h>\n"
-                                 "\n"
-                                 "int main()\n"
-                                 "{\n"
-                                 "    printf(\"Hello, world! \"); \n"
-                                 "\n"
-                                 "    return 0; \n"
-                                 "}\n"
-                                ];
-        
-        [[self codeView] setString:sampleCodes];
-        [[self codeView] setDelegate:self];
+        [[self codeView] setDelegate:[self controller]];
         [[self codeView] setMode:ACEModeCPP];
         [[self codeView] setTheme:ACEThemeTextmate];
         
@@ -105,18 +92,24 @@
         [[self createButton] setImage:[NSImage imageNamed:@"create"]];
         [[[self createButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self createButton] setBordered:NO];
+        [[self createButton] setTarget:[self controller]];
+        [[self createButton] setAction:@selector(create)];
         [self addSubview:[self createButton]];
         
         [self setOpenButton:[[NSButton alloc] init]];
         [[self openButton] setImage:[NSImage imageNamed:@"open"]];
         [[[self openButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self openButton] setBordered:NO];
+        [[self openButton] setTarget:[self controller]];
+        [[self openButton] setAction:@selector(open)];
         [self addSubview:[self openButton]];
         
         [self setSaveButton:[[NSButton alloc] init]];
         [[self saveButton] setImage:[NSImage imageNamed:@"save"]];
         [[[self saveButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self saveButton] setBordered:NO];
+        [[self saveButton] setTarget:[self controller]];
+        [[self saveButton] setAction:@selector(save)];
         [self addSubview:[self saveButton]];
         
         // Initializing application control buttons
