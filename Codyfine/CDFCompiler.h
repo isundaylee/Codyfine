@@ -10,7 +10,7 @@
 
 @interface CDFCompiler : NSObject
 
-@property (nonatomic, readonly) NSArray *errors;
+@property (nonatomic, readonly) NSMutableArray *errors;
 
 - (BOOL) run:(NSString *)path;
 

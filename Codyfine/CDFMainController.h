@@ -19,7 +19,9 @@
 @property (nonatomic) NSWindow *window;
 @property (nonatomic) BOOL edited;
 @property (nonatomic, readonly) NSString *currentFilename;
-@property (nonatomic, readonly) CDFCompiler *compiler; 
+@property (nonatomic, readonly) CDFCompiler *compiler;
+@property (nonatomic, readonly) NSMutableArray *errors;
+@property (nonatomic) NSInteger currentErrorIndex;
 
 - (void) close;
 
@@ -31,6 +33,10 @@
 
 - (void) create;
 
-- (void) run; 
+- (void) run;
+
+- (void) next;
+
+- (void) prev; 
 
 @end

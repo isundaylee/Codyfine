@@ -16,7 +16,8 @@
 
 @property (nonatomic) NSColor *themeColor;
 @property (nonatomic) ACEView *codeView;
-@property (nonatomic) NSTextField *messageField;
+@property (nonatomic) NSScrollView *messageScroll; 
+@property (nonatomic) NSTextView *messageField;
 @property (nonatomic) NSString *message;
 
 @property (nonatomic) NSButton *runButton;
@@ -28,6 +29,9 @@
 
 @property (nonatomic) NSButton *closeButton;
 @property (nonatomic) NSButton *miniaturizeButton;
+
+@property (nonatomic) NSButton *nextButton;
+@property (nonatomic) NSButton *prevButton;
 
 @property (nonatomic) CDFMainController *controller;
 

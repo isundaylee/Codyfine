@@ -10,6 +10,8 @@
 
 @implementation CDFLocalCompiler
 
+@synthesize errors;
+
 - (BOOL)run:(NSString *)path
 {
     NSString *directory = [path stringByDeletingLastPathComponent];
@@ -38,6 +40,8 @@
     
     [compileTask waitUntilExit]; 
     
+    errors = [NSMutableArray array];
+    
     if ([compileTask terminationStatus] == 0) {
         NSTask *runTask = [[NSTask alloc] init];
         [runTask setLaunchPath:@"/usr/bin/open"];
@@ -48,7 +52,14 @@
         NSArray *entries = [result componentsSeparatedByString:@"\n"];
         for (int i=0; i<[entries count]; i++) {
             NSString *entry = [entries objectAtIndex:i];
-            NSLog(@"%@", entry); 
+            NSString *regexp = @":([0-9]*): error:(.*)$";
+            NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:regexp options:NSRegularExpressionCaseInsensitive error:nil];
+            NSTextCheckingResult *result = [reg firstMatchInString:entry options:0 range:NSMakeRange(0, [entry length])];
+            if (result) {
+                NSNumber *line = [NSNumber numberWithInteger:[[entry substringWithRange:[result rangeAtIndex:1]] integerValue]];
+                NSString *error = [entry substringWithRange:[result rangeAtIndex:2]];
+                [errors addObject:[NSDictionary dictionaryWithObjectsAndKeys:line, @"line", error, @"error", nil]];
+            }
         }
         return NO;
     }

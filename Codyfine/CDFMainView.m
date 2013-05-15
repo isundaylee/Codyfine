@@ -24,6 +24,9 @@
 @synthesize closeButton;
 @synthesize miniaturizeButton; 
 
+@synthesize nextButton;
+@synthesize prevButton;
+
 @synthesize controller;
 
 - (void)viewDidMoveToWindow
@@ -33,12 +36,12 @@
 
 - (void)setMessage:(NSString *)message
 {
-    [[self messageField] setStringValue:message];
+    [[self messageField] setString:message];
 }
 
 - (NSString *)message
 {
-    return [[self messageField] stringValue];
+    return [[self messageField] string];
 }
 
 - (id)initWithController:(CDFMainController *)controller; 
@@ -51,15 +54,25 @@
         
         [self setController:controller]; 
         
+        // Initializing the message scroll view
+        
+        [self setMessageScroll:[NSScrollView new]];
+        [[self messageScroll] setBorderType:NSNoBorder];
+        [[self messageScroll] setHasVerticalScroller:YES];
+        [[self messageScroll] setHasHorizontalScroller:NO];
+        [[self messageScroll] setBackgroundColor:[NSColor blackColor]];
+        [[[self messageScroll] verticalScroller] setControlSize:NSMiniControlSize]; 
+        [self addSubview:[self messageScroll]];
+        
         // Initializing the message label. 
         
-        [self setMessageField:[[NSTextField alloc] init]];
+        [self setMessageField:[[NSTextView alloc] init]];
         [[self messageField] setFont:[NSFont fontWithName:@"Monaco" size: 13]];
-        [[self messageField] setBezeled:NO];
-        [[self messageField] setDrawsBackground:NO];
+//        [[self messageField] setDrawsBackground:NO];
         [[self messageField] setEditable:NO];
-        [[self messageField] setAlignment:NSCenterTextAlignment]; 
-        [self addSubview:[self messageField]];
+        [[self messageField] setAlignment:NSCenterTextAlignment];
+        [[self messageField] setHorizontallyResizable:NO]; 
+        [[self messageScroll] setDocumentView:[self messageField]];
         
         // Initializing the code editor
         
@@ -130,7 +143,25 @@
         [[self miniaturizeButton] setBordered:NO];
         [[self miniaturizeButton] setTarget:self];
         [[self miniaturizeButton] setAction:@selector(performMiniaturize:)];
-        [self addSubview:[self miniaturizeButton]]; 
+        [self addSubview:[self miniaturizeButton]];
+        
+        // Initializing error message navigation buttons
+        
+        [self setNextButton:[NSButton new]];
+        [[self nextButton] setImage:[NSImage imageNamed:@"next"]];
+        [[self nextButton] setBordered:NO];
+        [[[self nextButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown]; 
+        [[self nextButton] setTarget:[self controller]];
+        [[self nextButton] setAction:@selector(next)];
+        [self addSubview:[self nextButton]];
+        
+        [self setPrevButton:[NSButton new]];
+        [[self prevButton] setImage:[NSImage imageNamed:@"prev"]];
+        [[self prevButton] setBordered:NO];
+        [[[self prevButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
+        [[self prevButton] setTarget:[self controller]];
+        [[self prevButton] setAction:@selector(prev)];
+        [self addSubview:[self prevButton]];
     }
     
     return self;
@@ -183,7 +214,15 @@
     [messageBoxBorder stroke];
     
     // Replace the message field
-    [[self messageField] setFrame:NSInsetRect(messageBox, 0.0f, 12.0f)];
+    [[self messageScroll] setFrame:NSInsetRect(messageBox, 15, 12.0)];
+    [[self messageField] setFrame:NSMakeRect(0, 0, [self messageScroll].contentSize.width, [self messageScroll].contentSize.height)];
+    
+    // Place the errors navigation buttons
+    NSRect nextBox = NSMakeRect(messageBox.origin.x + messageBox.size
+                                .width - 25, messageBox.origin.y + 12, 16, 16);
+    NSRect prevBox = NSMakeRect(messageBox.origin.x + 9, messageBox.origin.y + 12, 16, 16);
+    [[self nextButton] setFrame:nextBox];
+    [[self prevButton] setFrame:prevBox];
     
     // Place the buttons
     NSRect buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 - 300, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
@@ -217,6 +256,9 @@
     
     // Replace the code view
     [[self codeView] setFrame:NSInsetRect(contentBorderRect, 0.0f, 0.0f)];
+    
+    NSBezierPath *maskingBezier = [NSBezierPath bezierPathWithRect:nextBox];
+    [maskingBezier fill];
 }
 
 - (void)performClose:(id)sender

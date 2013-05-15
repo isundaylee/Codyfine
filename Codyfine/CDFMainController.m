@@ -16,7 +16,9 @@
 @synthesize window;
 @synthesize edited;
 @synthesize currentFilename;
-@synthesize compiler; 
+@synthesize compiler;
+@synthesize errors;
+@synthesize currentErrorIndex; 
 
 - (void)textDidChange:(NSNotification *)notification
 {
@@ -37,10 +39,14 @@
         [self setView:[[CDFMainView alloc] initWithController:self]];
         [[self view] setThemeColor:[NSColor blackColor]];
         [[self view] setMessage:@"Keep calm and ... happy coding! :)"];
+//        [[self view] setMessage:@"Users/Sunday/Desktop/hello.cpp:18: error: expected `;' before 'ut'"];
         
         [self create];
         
         compiler = [[CDFLocalCompiler alloc] init];
+        
+        currentErrorIndex = -1; 
+        [self tweakNavigators];
     }
     
     return self;
@@ -202,9 +208,64 @@
     if (result) {
         // Success
         [[self view] setMessage:@"Compilation succeeded! :)"];
+        [self tweakNavigators]; 
     } else {
         // Failure
-        [[self view] setMessage:@"Compilation failed :("];
+        errors = [compiler errors]; 
+        [[self view] setMessage:[NSString stringWithFormat:@"Compilation failed, %ld errors. :(", [[self errors] count]]];
+        [self setCurrentErrorIndex:-1];
+        [self tweakNavigators];
+    }
+}
+
+- (void)next
+{
+    if (currentErrorIndex == -1 && [self errors] && [[self errors] count] > 0)
+        [self selectErrorIndex:0]; 
+    else if (currentErrorIndex + 1 < [[self errors] count])
+        [self selectErrorIndex:currentErrorIndex + 1];
+}
+
+- (void)prev
+{
+    if (currentErrorIndex == -1 && [self errors] && [[self errors] count] > 0)
+        [self selectErrorIndex:0];
+    else if (currentErrorIndex > 0)
+        [self selectErrorIndex:currentErrorIndex - 1];
+}
+
+- (void) selectErrorIndex:(NSInteger) index
+{
+    [self setCurrentErrorIndex:index];
+    [[self view] setMessage:[[[self errors] objectAtIndex:[self currentErrorIndex]] objectForKey:@"error"]];
+    NSInteger line = [[[[self errors] objectAtIndex:[self currentErrorIndex]] objectForKey:@"line"] integerValue];
+    [[[self view] codeView] gotoLine: line column:0 animated:YES];
+    [self tweakNavigators];
+}
+
+- (void)tweakNavigators
+{
+    if (currentErrorIndex == -1) {
+        // Nothing selected
+        if ([self errors] && [[self errors] count] > 0) {
+            [[[self view] nextButton] setEnabled:YES];
+            [[[self view] prevButton] setEnabled:YES];
+        } else {
+            [[[self view] nextButton] setEnabled:NO];
+            [[[self view] prevButton] setEnabled:NO];
+        }
+    } else {
+        if ([self currentErrorIndex] + 1 < [[self errors] count]) {
+            [[[self view] nextButton] setEnabled:YES];
+        } else {
+            [[[self view] nextButton] setEnabled:NO];
+        }
+        
+        if ([self currentErrorIndex] > 0) {
+            [[[self view] prevButton] setEnabled:YES];
+        } else {
+            [[[self view] prevButton] setEnabled:NO]; 
+        }
     }
 }
 

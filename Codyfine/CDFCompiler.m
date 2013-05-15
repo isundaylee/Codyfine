@@ -10,6 +10,5 @@
 
 @implementation CDFCompiler
 
-@synthesize errors; 
 
 @end
