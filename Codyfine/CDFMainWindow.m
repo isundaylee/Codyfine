@@ -10,6 +10,17 @@
 
 @implementation CDFMainWindow {
     NSView *childContentView;
+    
+    BOOL shouldDrag;
+    BOOL shouldRedoInitials;
+    NSPoint initialLocation;
+    NSPoint initialLocationOnScreen;
+    NSRect initialFrame;
+    NSPoint currentLocation;
+    NSPoint newOrigin;
+    NSRect screenFrame;
+    NSRect windowFrame;
+    float minY; 
 }
 
 const int WINDOW_FRAME_PADDING = 75;
@@ -44,6 +55,39 @@ const int WINDOW_FRAME_PADDING = 75;
 - (BOOL)canBecomeKeyWindow
 {
     return YES; 
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    if (shouldRedoInitials) {
+        initialLocation = [theEvent locationInWindow];
+        initialLocationOnScreen = [self convertBaseToScreen:[theEvent locationInWindow]];
+        
+        initialFrame = [self frame];
+        shouldRedoInitials = NO;
+        
+        screenFrame = [[NSScreen mainScreen] frame];
+        windowFrame = [self frame];
+        
+        minY = windowFrame.origin.y + (windowFrame.size.height - 288);
+    }
+    
+    currentLocation = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
+    
+    newOrigin.x = currentLocation.x - initialLocation.x;
+    newOrigin.y = currentLocation.y - initialLocation.y;
+    
+    if ((newOrigin.y + windowFrame.size.height) > (screenFrame.origin.y + screenFrame.size.height))
+    {
+        newOrigin.y = screenFrame.origin.y + (screenFrame.size.height - windowFrame.size.height);
+    }
+    
+    [self setFrameOrigin:newOrigin];
+}
+
+- (void)mouseDown:(NSEvent *)theEvent
+{
+    shouldRedoInitials = YES;
 }
 
 @end
