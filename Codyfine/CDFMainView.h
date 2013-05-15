@@ -33,6 +33,8 @@
 @property (nonatomic) NSButton *nextButton;
 @property (nonatomic) NSButton *prevButton;
 
+@property (nonatomic) NSImageView *logoView; 
+
 @property (nonatomic) CDFMainController *controller;
 
 - (id)initWithController:(CDFMainController *)controller;

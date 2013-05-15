@@ -27,6 +27,8 @@
 @synthesize nextButton;
 @synthesize prevButton;
 
+@synthesize logoView; 
+
 @synthesize controller;
 
 - (void)viewDidMoveToWindow
@@ -162,6 +164,11 @@
         [[self prevButton] setTarget:[self controller]];
         [[self prevButton] setAction:@selector(prev)];
         [self addSubview:[self prevButton]];
+        
+        // Initializing the logo ivew
+        [self setLogoView:[NSImageView new]];
+        [[self logoView] setImage:[NSImage imageNamed:@"logo.png"]];
+        [self addSubview:[self logoView]]; 
     }
     
     return self;
@@ -193,12 +200,7 @@
     logoRect.origin.y = bounds.size.height - 85;
     logoRect.size.width = 70;
     logoRect.size.height = 70;
-    
-    // Draw the logo. 
-    NSBezierPath *logo = [NSBezierPath bezierPathWithOvalInRect:logoRect];
-    [logo setLineWidth:2.0];
-    [logo fill];
-    [logo stroke];
+    [[self logoView] setFrame:logoRect];
     
     // Draw the seperation line
     NSBezierPath *sepLine = [[NSBezierPath alloc] init];
