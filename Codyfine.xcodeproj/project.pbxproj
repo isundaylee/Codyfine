@@ -139,9 +139,9 @@
 		153BE898174280170097852D /* Codyfine */ = {
 			isa = PBXGroup;
 			children = (
+				15969B7E17433C670096EA60 /* Images */,
 				15969B9517436DFA0096EA60 /* CDFCompiler.h */,
 				15969B9617436DFA0096EA60 /* CDFCompiler.m */,
-				15969B7E17433C670096EA60 /* Images */,
 				15969B8C174350FA0096EA60 /* CDFMainController.h */,
 				15969B8D174350FA0096EA60 /* CDFMainController.m */,
 				153BE8B2174284350097852D /* CDFMainView.h */,
@@ -149,11 +149,11 @@
 				153BE8A4174280170097852D /* CDFAppDelegate.h */,
 				153BE8A5174280170097852D /* CDFAppDelegate.m */,
 				153BE8A7174280170097852D /* MainMenu.xib */,
-				153BE899174280170097852D /* Supporting Files */,
 				153BE8AF174280BE0097852D /* CDFMainWindow.h */,
 				153BE8B0174280BE0097852D /* CDFMainWindow.m */,
 				15969B9817436E370096EA60 /* CDFLocalCompiler.h */,
 				15969B9917436E370096EA60 /* CDFLocalCompiler.m */,
+				153BE899174280170097852D /* Supporting Files */,
 			);
 			path = Codyfine;
 			sourceTree = "<group>";
@@ -196,6 +196,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 153BE8AC174280170097852D /* Build configuration list for PBXNativeTarget "Codyfine" */;
 			buildPhases = (
+				151ED7321743C2B800C40C28 /* ShellScript */,
 				153BE88A174280170097852D /* Sources */,
 				153BE88B174280170097852D /* Frameworks */,
 				153BE88C174280170097852D /* Resources */,
@@ -261,6 +262,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		151ED7321743C2B800C40C28 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbN=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbN=$((0x$bN))\nbN=$(($bN + 1))\nbN=$(printf \"%X\" $bN)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bN\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		153BE88A174280170097852D /* Sources */ = {
