@@ -32,9 +32,9 @@
 
 @synthesize controller;
 
-- (void)viewDidMoveToWindow
+- (BOOL)canBecomeKeyView
 {
-    NSLog(@"Moved to window. ");
+    return YES; 
 }
 
 - (void)setMessage:(NSString *)message
