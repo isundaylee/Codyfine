@@ -63,7 +63,6 @@
         [[self messageScroll] setBorderType:NSNoBorder];
         [[self messageScroll] setHasVerticalScroller:YES];
         [[self messageScroll] setHasHorizontalScroller:NO];
-        [[self messageScroll] setBackgroundColor:[NSColor blackColor]];
         [[[self messageScroll] verticalScroller] setControlSize:NSMiniControlSize]; 
         [self addSubview:[self messageScroll]];
         
@@ -71,10 +70,11 @@
         
         [self setMessageField:[[NSTextView alloc] init]];
         [[self messageField] setFont:[NSFont fontWithName:@"Monaco" size: 13]];
-//        [[self messageField] setDrawsBackground:NO];
+        [[self messageField] setDrawsBackground:NO]; 
         [[self messageField] setEditable:NO];
         [[self messageField] setAlignment:NSCenterTextAlignment];
-        [[self messageField] setHorizontallyResizable:NO]; 
+        [[self messageField] setHorizontallyResizable:NO];
+        [[self messageField] setVerticallyResizable:YES]; 
         [[self messageScroll] setDocumentView:[self messageField]];
         
         // Initializing the code editor
@@ -224,10 +224,16 @@
     // Replace the message field
     [[self messageScroll] setFrame:NSInsetRect(messageBox, 13.0, 12.0)];
     [[self messageField] setFrame:NSMakeRect(0, 0, [self messageScroll].contentSize.width, [self messageScroll].contentSize.height)];
+    [[self messageField] setMinSize:NSMakeSize(0.0, [self messageScroll].contentSize.height)];
+    [[self messageField] setMaxSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+    [[self messageField] setString:[[self messageField] string]];
+    [[[self messageField] textContainer] setContainerSize:NSMakeSize([[self messageScroll] contentSize].width, FLT_MAX)];
+    [[[self messageField] textContainer] setWidthTracksTextView:YES];
+    
+    NSLog(@"%lf\n", [self messageScroll].contentSize.height);
     
     // Place the errors navigation buttons
-    NSRect nextBox = NSMakeRect(messageBox.origin.x + messageBox.size
-                                .width - 25, messageBox.origin.y + 12, 16, 16);
+    NSRect nextBox = NSMakeRect(messageBox.origin.x + messageBox.size.width - 25, messageBox.origin.y + 12, 16, 16);
     NSRect prevBox = NSMakeRect(messageBox.origin.x + 9, messageBox.origin.y + 12, 16, 16);
     [[self nextButton] setFrame:nextBox];
     [[self prevButton] setFrame:prevBox];
