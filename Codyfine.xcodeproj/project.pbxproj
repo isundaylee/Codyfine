@@ -13,6 +13,8 @@
 		153BE8A3174280170097852D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 153BE8A1174280170097852D /* Credits.rtf */; };
 		153BE8A6174280170097852D /* CDFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 153BE8A5174280170097852D /* CDFAppDelegate.m */; };
 		153BE8A9174280170097852D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153BE8A7174280170097852D /* MainMenu.xib */; };
+		153BE8B1174280BE0097852D /* CDFMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 153BE8B0174280BE0097852D /* CDFMainWindow.m */; };
+		153BE8B4174284350097852D /* CDFMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 153BE8B3174284350097852D /* CDFMainView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,11 @@
 		153BE8A4174280170097852D /* CDFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CDFAppDelegate.h; sourceTree = "<group>"; };
 		153BE8A5174280170097852D /* CDFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CDFAppDelegate.m; sourceTree = "<group>"; };
 		153BE8A8174280170097852D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		153BE8AF174280BE0097852D /* CDFMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFMainWindow.h; sourceTree = "<group>"; };
+		153BE8B0174280BE0097852D /* CDFMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFMainWindow.m; sourceTree = "<group>"; };
+		153BE8B2174284350097852D /* CDFMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFMainView.h; sourceTree = "<group>"; };
+		153BE8B3174284350097852D /* CDFMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFMainView.m; sourceTree = "<group>"; };
+		153BE8B517431E350097852D /* ACEView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ACEView.framework; path = ../../Git/ACEView/Build/Products/Release/ACEView.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +53,7 @@
 		153BE883174280170097852D = {
 			isa = PBXGroup;
 			children = (
+				153BE8B517431E350097852D /* ACEView.framework */,
 				153BE898174280170097852D /* Codyfine */,
 				153BE891174280170097852D /* Frameworks */,
 				153BE88F174280170097852D /* Products */,
@@ -82,10 +90,14 @@
 		153BE898174280170097852D /* Codyfine */ = {
 			isa = PBXGroup;
 			children = (
+				153BE8B2174284350097852D /* CDFMainView.h */,
+				153BE8B3174284350097852D /* CDFMainView.m */,
 				153BE8A4174280170097852D /* CDFAppDelegate.h */,
 				153BE8A5174280170097852D /* CDFAppDelegate.m */,
 				153BE8A7174280170097852D /* MainMenu.xib */,
 				153BE899174280170097852D /* Supporting Files */,
+				153BE8AF174280BE0097852D /* CDFMainWindow.h */,
+				153BE8B0174280BE0097852D /* CDFMainWindow.m */,
 			);
 			path = Codyfine;
 			sourceTree = "<group>";
@@ -169,6 +181,8 @@
 			files = (
 				153BE89F174280170097852D /* main.m in Sources */,
 				153BE8A6174280170097852D /* CDFAppDelegate.m in Sources */,
+				153BE8B1174280BE0097852D /* CDFMainWindow.m in Sources */,
+				153BE8B4174284350097852D /* CDFMainView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +273,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Git/ACEView/Build/Products/Release\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Codyfine/Codyfine-Prefix.pch";
 				INFOPLIST_FILE = "Codyfine/Codyfine-Info.plist";
@@ -271,6 +289,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Git/ACEView/Build/Products/Release\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Codyfine/Codyfine-Prefix.pch";
 				INFOPLIST_FILE = "Codyfine/Codyfine-Info.plist";

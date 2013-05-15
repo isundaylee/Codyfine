@@ -7,12 +7,24 @@
 //
 
 #import "CDFAppDelegate.h"
+#import "CDFMainView.h"
 
 @implementation CDFAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    CDFMainView *view = [[CDFMainView alloc] init];
+    [view setThemeColor:[NSColor blackColor]];
+    
+    // Resize and relocate the window
+    NSRect frame = [[self window] frame];
+    frame.size = NSMakeSize(1024, 768);
+    [[self window] setFrame:frame display:YES];
+    [[self window] center]; 
+    
+    // Insert the main view
+    [[self window] setContentView:view];
 }
 
 @end
