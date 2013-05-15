@@ -19,7 +19,12 @@
 
 @synthesize createButton;
 @synthesize openButton;
-@synthesize saveButton; 
+@synthesize saveButton;
+
+@synthesize closeButton;
+@synthesize miniaturizeButton; 
+
+@synthesize controller; 
 
 - (void)setMessage:(NSString *)message
 {
@@ -31,11 +36,15 @@
     return [[self messageField] stringValue];
 }
 
-- (id)initWithFrame:(NSRect)frameRect
+- (id)initWithController:(CDFMainController *)controller; 
 {
-    self = [super initWithFrame:frameRect];
+    self = [super init];
     
     if (self) {
+        
+        // Setting the controller
+        
+        [self setController:controller]; 
         
         // Initializing the message label. 
         
@@ -109,6 +118,24 @@
         [[[self saveButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self saveButton] setBordered:NO];
         [self addSubview:[self saveButton]];
+        
+        // Initializing application control buttons
+        
+        [self setCloseButton:[[NSButton alloc] init]];
+        [[self closeButton] setImage:[NSImage imageNamed:@"close"]];
+        [[[self closeButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
+        [[self closeButton] setBordered:NO];
+        [[self closeButton] setTarget:[self controller]];
+        [[self closeButton] setAction:@selector(close)];
+        [self addSubview:[self closeButton]];
+        
+        [self setMiniaturizeButton:[[NSButton alloc] init]];
+        [[self miniaturizeButton] setImage:[NSImage imageNamed:@"miniaturize"]];
+        [[[self miniaturizeButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
+        [[self miniaturizeButton] setBordered:NO];
+        [[self miniaturizeButton] setTarget:[self controller]];
+        [[self miniaturizeButton] setAction:@selector(miniaturize)];
+        [self addSubview:[self miniaturizeButton]]; 
     }
     
     return self;
@@ -177,7 +204,14 @@
     [[self openButton] setFrame:buttonBox];
     
     buttonBox.origin.x += 50;
-    [[self saveButton] setFrame:buttonBox]; 
+    [[self saveButton] setFrame:buttonBox];
+    
+    // Place the window control buttons
+    buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width - 20, innerBounds.origin.y + innerBounds.size.height - 20, 10, 10);
+    [[self closeButton] setFrame:buttonBox];
+    
+    buttonBox.origin.y -= 20;
+    [[self miniaturizeButton] setFrame:buttonBox]; 
     
     // Define the code border
     NSRect contentBorderRect = innerBounds;

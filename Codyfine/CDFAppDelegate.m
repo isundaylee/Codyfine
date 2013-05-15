@@ -8,14 +8,15 @@
 
 #import "CDFAppDelegate.h"
 #import "CDFMainView.h"
+#import "CDFMainController.h"
 
 @implementation CDFAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
-    CDFMainView *view = [[CDFMainView alloc] init];
-    [view setThemeColor:[NSColor blackColor]];
+    // Initialize view controller
+    CDFMainController *controller = [[CDFMainController alloc] init];
+    [controller setWindow:[self window]]; 
     
     // Resize and relocate the window
     NSRect frame = [[self window] frame];
@@ -23,9 +24,13 @@
     [[self window] setFrame:frame display:YES];
     [[self window] center]; 
     
-    // Insert the main view
-    [[self window] setContentView:view];
-    [[[self window] contentView] setMessage:@"Keep calm and ... happy coding! :)"];
+    // Insert the view
+    [[self window] setContentView:[controller view]];
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+    return NO;
 }
 
 @end

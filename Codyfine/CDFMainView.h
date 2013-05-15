@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ACEView/ACEView.h"
+#import "CDFMainController.h"
+
+@class CDFMainController; 
 
 @interface CDFMainView : NSView
 
@@ -22,5 +25,12 @@
 @property (nonatomic) NSButton *createButton;
 @property (nonatomic) NSButton *openButton;
 @property (nonatomic) NSButton *saveButton;
+
+@property (nonatomic) NSButton *closeButton;
+@property (nonatomic) NSButton *miniaturizeButton;
+
+@property (nonatomic) CDFMainController *controller;
+
+- (id)initWithController:(CDFMainController *)controller; 
 
 @end

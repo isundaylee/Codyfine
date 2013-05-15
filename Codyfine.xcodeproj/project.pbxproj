@@ -22,6 +22,9 @@
 		15969B871743415F0096EA60 /* create.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B841743415F0096EA60 /* create.png */; };
 		15969B881743415F0096EA60 /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B851743415F0096EA60 /* open.png */; };
 		15969B891743415F0096EA60 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B861743415F0096EA60 /* save.png */; };
+		15969B8B174350C70096EA60 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B8A174350C70096EA60 /* close.png */; };
+		15969B8E174350FA0096EA60 /* CDFMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15969B8D174350FA0096EA60 /* CDFMainController.m */; };
+		15969B90174357D80096EA60 /* miniaturize.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B8F174357D80096EA60 /* miniaturize.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +64,10 @@
 		15969B841743415F0096EA60 /* create.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create.png; sourceTree = "<group>"; };
 		15969B851743415F0096EA60 /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open.png; sourceTree = "<group>"; };
 		15969B861743415F0096EA60 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		15969B8A174350C70096EA60 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		15969B8C174350FA0096EA60 /* CDFMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFMainController.h; sourceTree = "<group>"; };
+		15969B8D174350FA0096EA60 /* CDFMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFMainController.m; sourceTree = "<group>"; };
+		15969B8F174357D80096EA60 /* miniaturize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = miniaturize.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				15969B7E17433C670096EA60 /* Images */,
+				15969B8C174350FA0096EA60 /* CDFMainController.h */,
+				15969B8D174350FA0096EA60 /* CDFMainController.m */,
 				153BE8B2174284350097852D /* CDFMainView.h */,
 				153BE8B3174284350097852D /* CDFMainView.m */,
 				153BE8A4174280170097852D /* CDFAppDelegate.h */,
@@ -144,6 +153,8 @@
 		15969B7E17433C670096EA60 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				15969B8F174357D80096EA60 /* miniaturize.png */,
+				15969B8A174350C70096EA60 /* close.png */,
 				15969B841743415F0096EA60 /* create.png */,
 				15969B851743415F0096EA60 /* open.png */,
 				15969B861743415F0096EA60 /* save.png */,
@@ -214,6 +225,8 @@
 				15969B871743415F0096EA60 /* create.png in Resources */,
 				15969B881743415F0096EA60 /* open.png in Resources */,
 				15969B891743415F0096EA60 /* save.png in Resources */,
+				15969B8B174350C70096EA60 /* close.png in Resources */,
+				15969B90174357D80096EA60 /* miniaturize.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +241,7 @@
 				153BE8A6174280170097852D /* CDFAppDelegate.m in Sources */,
 				153BE8B1174280BE0097852D /* CDFMainWindow.m in Sources */,
 				153BE8B4174284350097852D /* CDFMainView.m in Sources */,
+				15969B8E174350FA0096EA60 /* CDFMainController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
