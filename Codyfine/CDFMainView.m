@@ -125,16 +125,16 @@
         [[self closeButton] setImage:[NSImage imageNamed:@"close"]];
         [[[self closeButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self closeButton] setBordered:NO];
-        [[self closeButton] setTarget:[self controller]];
-        [[self closeButton] setAction:@selector(close)];
+        [[self closeButton] setTarget:self];
+        [[self closeButton] setAction:@selector(performClose:)];
         [self addSubview:[self closeButton]];
         
         [self setMiniaturizeButton:[[NSButton alloc] init]];
         [[self miniaturizeButton] setImage:[NSImage imageNamed:@"miniaturize"]];
         [[[self miniaturizeButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self miniaturizeButton] setBordered:NO];
-        [[self miniaturizeButton] setTarget:[self controller]];
-        [[self miniaturizeButton] setAction:@selector(miniaturize)];
+        [[self miniaturizeButton] setTarget:self];
+        [[self miniaturizeButton] setAction:@selector(performMiniaturize:)];
         [self addSubview:[self miniaturizeButton]]; 
     }
     
@@ -222,6 +222,16 @@
     
     // Replace the code view
     [[self codeView] setFrame:NSInsetRect(contentBorderRect, 0.0f, 0.0f)];
+}
+
+- (void)performClose:(id)sender
+{
+    [[self controller] close];
+}
+
+- (void)performMiniaturize:(id)sender
+{
+    [[self controller] miniaturize]; 
 }
 
 @end

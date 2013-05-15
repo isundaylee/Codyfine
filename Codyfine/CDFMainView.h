@@ -31,6 +31,9 @@
 
 @property (nonatomic) CDFMainController *controller;
 
-- (id)initWithController:(CDFMainController *)controller; 
+- (id)initWithController:(CDFMainController *)controller;
+
+- (void) performClose:(id)sender;
+- (void) performMiniaturize:(id)sender; 
 
 @end
