@@ -27,7 +27,8 @@
 @synthesize nextButton;
 @synthesize prevButton;
 
-@synthesize logoView; 
+@synthesize logoView;
+@synthesize maskingView; 
 
 @synthesize controller;
 
@@ -147,6 +148,11 @@
         [[self miniaturizeButton] setAction:@selector(performMiniaturize:)];
         [self addSubview:[self miniaturizeButton]];
         
+        // Initializing the masking view
+        [self setMaskingView:[NSImageView new]];
+        [[self maskingView] setImage:[NSImage imageNamed:@"blank.png"]];
+        [self addSubview:[self maskingView]];
+        
         // Initializing error message navigation buttons
         
         [self setNextButton:[NSButton new]];
@@ -168,7 +174,7 @@
         // Initializing the logo ivew
         [self setLogoView:[NSImageView new]];
         [[self logoView] setImage:[NSImage imageNamed:@"logo.png"]];
-        [self addSubview:[self logoView]]; 
+        [self addSubview:[self logoView]];
     }
     
     return self;
@@ -216,7 +222,7 @@
     [messageBoxBorder stroke];
     
     // Replace the message field
-    [[self messageScroll] setFrame:NSInsetRect(messageBox, 15, 12.0)];
+    [[self messageScroll] setFrame:NSInsetRect(messageBox, 13.0, 12.0)];
     [[self messageField] setFrame:NSMakeRect(0, 0, [self messageScroll].contentSize.width, [self messageScroll].contentSize.height)];
     
     // Place the errors navigation buttons
@@ -225,6 +231,7 @@
     NSRect prevBox = NSMakeRect(messageBox.origin.x + 9, messageBox.origin.y + 12, 16, 16);
     [[self nextButton] setFrame:nextBox];
     [[self prevButton] setFrame:prevBox];
+    [[self maskingView] setFrame:nextBox];
     
     // Place the buttons
     NSRect buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 - 300, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
