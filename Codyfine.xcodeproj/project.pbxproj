@@ -17,6 +17,11 @@
 		153BE8B4174284350097852D /* CDFMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 153BE8B3174284350097852D /* CDFMainView.m */; };
 		153BE8BD174321F90097852D /* ACEView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153BE8BC174321F90097852D /* ACEView.framework */; };
 		15969B451743235E0096EA60 /* ACEView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 153BE8BC174321F90097852D /* ACEView.framework */; };
+		15969B8117433C710096EA60 /* build.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B8017433C710096EA60 /* build.png */; };
+		15969B83174340BB0096EA60 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B82174340BB0096EA60 /* stop.png */; };
+		15969B871743415F0096EA60 /* create.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B841743415F0096EA60 /* create.png */; };
+		15969B881743415F0096EA60 /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B851743415F0096EA60 /* open.png */; };
+		15969B891743415F0096EA60 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B861743415F0096EA60 /* save.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +56,11 @@
 		153BE8B2174284350097852D /* CDFMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFMainView.h; sourceTree = "<group>"; };
 		153BE8B3174284350097852D /* CDFMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFMainView.m; sourceTree = "<group>"; };
 		153BE8BC174321F90097852D /* ACEView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ACEView.framework; sourceTree = "<group>"; };
+		15969B8017433C710096EA60 /* build.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = build.png; sourceTree = "<group>"; };
+		15969B82174340BB0096EA60 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		15969B841743415F0096EA60 /* create.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create.png; sourceTree = "<group>"; };
+		15969B851743415F0096EA60 /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open.png; sourceTree = "<group>"; };
+		15969B861743415F0096EA60 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +116,7 @@
 		153BE898174280170097852D /* Codyfine */ = {
 			isa = PBXGroup;
 			children = (
+				15969B7E17433C670096EA60 /* Images */,
 				153BE8B2174284350097852D /* CDFMainView.h */,
 				153BE8B3174284350097852D /* CDFMainView.m */,
 				153BE8A4174280170097852D /* CDFAppDelegate.h */,
@@ -128,6 +139,18 @@
 				153BE8A1174280170097852D /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15969B7E17433C670096EA60 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				15969B841743415F0096EA60 /* create.png */,
+				15969B851743415F0096EA60 /* open.png */,
+				15969B861743415F0096EA60 /* save.png */,
+				15969B82174340BB0096EA60 /* stop.png */,
+				15969B8017433C710096EA60 /* build.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +209,11 @@
 				153BE89D174280170097852D /* InfoPlist.strings in Resources */,
 				153BE8A3174280170097852D /* Credits.rtf in Resources */,
 				153BE8A9174280170097852D /* MainMenu.xib in Resources */,
+				15969B8117433C710096EA60 /* build.png in Resources */,
+				15969B83174340BB0096EA60 /* stop.png in Resources */,
+				15969B871743415F0096EA60 /* create.png in Resources */,
+				15969B881743415F0096EA60 /* open.png in Resources */,
+				15969B891743415F0096EA60 /* save.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

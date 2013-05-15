@@ -25,6 +25,7 @@
     
     // Insert the main view
     [[self window] setContentView:view];
+    [[[self window] contentView] setMessage:@"Keep calm and ... happy coding! :)"];
 }
 
 @end

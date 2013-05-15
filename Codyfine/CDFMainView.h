@@ -11,7 +11,16 @@
 
 @interface CDFMainView : NSView
 
-@property NSColor *themeColor;
-@property ACEView *codeView; 
+@property (nonatomic) NSColor *themeColor;
+@property (nonatomic) ACEView *codeView;
+@property (nonatomic) NSTextField *messageField;
+@property (nonatomic) NSString *message;
+
+@property (nonatomic) NSButton *runButton;
+@property (nonatomic) NSButton *stopButton;
+
+@property (nonatomic) NSButton *createButton;
+@property (nonatomic) NSButton *openButton;
+@property (nonatomic) NSButton *saveButton;
 
 @end
