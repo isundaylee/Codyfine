@@ -15,7 +15,22 @@
 		153BE8A9174280170097852D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153BE8A7174280170097852D /* MainMenu.xib */; };
 		153BE8B1174280BE0097852D /* CDFMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 153BE8B0174280BE0097852D /* CDFMainWindow.m */; };
 		153BE8B4174284350097852D /* CDFMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 153BE8B3174284350097852D /* CDFMainView.m */; };
+		153BE8BD174321F90097852D /* ACEView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153BE8BC174321F90097852D /* ACEView.framework */; };
+		15969B451743235E0096EA60 /* ACEView.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 153BE8BC174321F90097852D /* ACEView.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		15969B43174323060096EA60 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				15969B451743235E0096EA60 /* ACEView.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		153BE88E174280170097852D /* Codyfine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Codyfine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,7 +50,7 @@
 		153BE8B0174280BE0097852D /* CDFMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFMainWindow.m; sourceTree = "<group>"; };
 		153BE8B2174284350097852D /* CDFMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFMainView.h; sourceTree = "<group>"; };
 		153BE8B3174284350097852D /* CDFMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFMainView.m; sourceTree = "<group>"; };
-		153BE8B517431E350097852D /* ACEView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ACEView.framework; path = ../../Git/ACEView/Build/Products/Release/ACEView.framework; sourceTree = "<group>"; };
+		153BE8BC174321F90097852D /* ACEView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ACEView.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				153BE893174280170097852D /* Cocoa.framework in Frameworks */,
+				153BE8BD174321F90097852D /* ACEView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +69,6 @@
 		153BE883174280170097852D = {
 			isa = PBXGroup;
 			children = (
-				153BE8B517431E350097852D /* ACEView.framework */,
 				153BE898174280170097852D /* Codyfine */,
 				153BE891174280170097852D /* Frameworks */,
 				153BE88F174280170097852D /* Products */,
@@ -71,6 +86,7 @@
 		153BE891174280170097852D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				153BE8BC174321F90097852D /* ACEView.framework */,
 				153BE892174280170097852D /* Cocoa.framework */,
 				153BE894174280170097852D /* Other Frameworks */,
 			);
@@ -124,6 +140,7 @@
 				153BE88A174280170097852D /* Sources */,
 				153BE88B174280170097852D /* Frameworks */,
 				153BE88C174280170097852D /* Resources */,
+				15969B43174323060096EA60 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -276,6 +293,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Git/ACEView/Build/Products/Release\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Codyfine/Codyfine-Prefix.pch";
@@ -292,6 +310,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Git/ACEView/Build/Products/Release\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Codyfine/Codyfine-Prefix.pch";
@@ -320,6 +339,7 @@
 				153BE8AE174280170097852D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
