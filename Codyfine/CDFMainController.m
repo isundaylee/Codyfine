@@ -16,6 +16,7 @@
 @synthesize window;
 @synthesize edited;
 @synthesize currentFilename;
+@synthesize compiler; 
 
 - (void)textDidChange:(NSNotification *)notification
 {
@@ -38,6 +39,8 @@
         [[self view] setMessage:@"Keep calm and ... happy coding! :)"];
         
         [self create];
+        
+        compiler = [[CDFLocalCompiler alloc] init];
     }
     
     return self;
@@ -184,6 +187,25 @@
     currentFilename = path;
     [self setEdited:NO];
     return YES;
+}
+
+- (void) run
+{
+    if (![self attemptSave]) {
+        return;
+    }
+    
+    [[self view] setMessage:@"Compiling hard T_T ..."];
+    
+    BOOL result = [[self compiler] run:[self currentFilename]];
+    
+    if (result) {
+        // Success
+        [[self view] setMessage:@"Compilation succeeded! :)"];
+    } else {
+        // Failure
+        [[self view] setMessage:@"Compilation failed :("];
+    }
 }
 
 @end

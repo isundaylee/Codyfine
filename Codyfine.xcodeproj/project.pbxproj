@@ -25,6 +25,8 @@
 		15969B8B174350C70096EA60 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B8A174350C70096EA60 /* close.png */; };
 		15969B8E174350FA0096EA60 /* CDFMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15969B8D174350FA0096EA60 /* CDFMainController.m */; };
 		15969B90174357D80096EA60 /* miniaturize.png in Resources */ = {isa = PBXBuildFile; fileRef = 15969B8F174357D80096EA60 /* miniaturize.png */; };
+		15969B9717436DFA0096EA60 /* CDFCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 15969B9617436DFA0096EA60 /* CDFCompiler.m */; };
+		15969B9A17436E370096EA60 /* CDFLocalCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 15969B9917436E370096EA60 /* CDFLocalCompiler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +70,10 @@
 		15969B8C174350FA0096EA60 /* CDFMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFMainController.h; sourceTree = "<group>"; };
 		15969B8D174350FA0096EA60 /* CDFMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFMainController.m; sourceTree = "<group>"; };
 		15969B8F174357D80096EA60 /* miniaturize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = miniaturize.png; sourceTree = "<group>"; };
+		15969B9517436DFA0096EA60 /* CDFCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFCompiler.h; sourceTree = "<group>"; };
+		15969B9617436DFA0096EA60 /* CDFCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFCompiler.m; sourceTree = "<group>"; };
+		15969B9817436E370096EA60 /* CDFLocalCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDFLocalCompiler.h; sourceTree = "<group>"; };
+		15969B9917436E370096EA60 /* CDFLocalCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDFLocalCompiler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,8 @@
 		153BE898174280170097852D /* Codyfine */ = {
 			isa = PBXGroup;
 			children = (
+				15969B9517436DFA0096EA60 /* CDFCompiler.h */,
+				15969B9617436DFA0096EA60 /* CDFCompiler.m */,
 				15969B7E17433C670096EA60 /* Images */,
 				15969B8C174350FA0096EA60 /* CDFMainController.h */,
 				15969B8D174350FA0096EA60 /* CDFMainController.m */,
@@ -134,6 +142,8 @@
 				153BE899174280170097852D /* Supporting Files */,
 				153BE8AF174280BE0097852D /* CDFMainWindow.h */,
 				153BE8B0174280BE0097852D /* CDFMainWindow.m */,
+				15969B9817436E370096EA60 /* CDFLocalCompiler.h */,
+				15969B9917436E370096EA60 /* CDFLocalCompiler.m */,
 			);
 			path = Codyfine;
 			sourceTree = "<group>";
@@ -242,6 +252,8 @@
 				153BE8B1174280BE0097852D /* CDFMainWindow.m in Sources */,
 				153BE8B4174284350097852D /* CDFMainView.m in Sources */,
 				15969B8E174350FA0096EA60 /* CDFMainController.m in Sources */,
+				15969B9717436DFA0096EA60 /* CDFCompiler.m in Sources */,
+				15969B9A17436E370096EA60 /* CDFLocalCompiler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

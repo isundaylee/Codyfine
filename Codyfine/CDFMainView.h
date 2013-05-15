@@ -34,6 +34,9 @@
 - (id)initWithController:(CDFMainController *)controller;
 
 - (void) performClose:(id)sender;
-- (void) performMiniaturize:(id)sender; 
+- (void) performMiniaturize:(id)sender;
+- (void) saveDocument:(id)sender;
+- (void) newDocument:(id)sender;
+- (void) openDocument:(id)sender; 
 
 @end

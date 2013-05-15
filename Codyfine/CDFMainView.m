@@ -80,36 +80,38 @@
         [[self runButton] setImage:[NSImage imageNamed:@"build"]];
         [[[self runButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown]; 
         [[self runButton] setBordered:NO];
+        [[self runButton] setTarget:[self controller]];
+        [[self runButton] setAction:@selector(run)]; 
         [self addSubview:[self runButton]];
         
-        [self setStopButton:[[NSButton alloc] init]];
-        [[self stopButton] setImage:[NSImage imageNamed:@"stop"]];
-        [[[self stopButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
-        [[self stopButton] setBordered:NO];
-        [self addSubview:[self stopButton]];
+//        [self setStopButton:[[NSButton alloc] init]];
+//        [[self stopButton] setImage:[NSImage imageNamed:@"stop"]];
+//        [[[self stopButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
+//        [[self stopButton] setBordered:NO];
+//        [self addSubview:[self stopButton]];
         
         [self setCreateButton:[[NSButton alloc] init]];
         [[self createButton] setImage:[NSImage imageNamed:@"create"]];
         [[[self createButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self createButton] setBordered:NO];
-        [[self createButton] setTarget:[self controller]];
-        [[self createButton] setAction:@selector(create)];
+        [[self createButton] setTarget:self];
+        [[self createButton] setAction:@selector(newDocument:)];
         [self addSubview:[self createButton]];
         
         [self setOpenButton:[[NSButton alloc] init]];
         [[self openButton] setImage:[NSImage imageNamed:@"open"]];
         [[[self openButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self openButton] setBordered:NO];
-        [[self openButton] setTarget:[self controller]];
-        [[self openButton] setAction:@selector(open)];
+        [[self openButton] setTarget:self];
+        [[self openButton] setAction:@selector(openDocument:)];
         [self addSubview:[self openButton]];
         
         [self setSaveButton:[[NSButton alloc] init]];
         [[self saveButton] setImage:[NSImage imageNamed:@"save"]];
         [[[self saveButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
         [[self saveButton] setBordered:NO];
-        [[self saveButton] setTarget:[self controller]];
-        [[self saveButton] setAction:@selector(save)];
+        [[self saveButton] setTarget:self];
+        [[self saveButton] setAction:@selector(saveDocument:)];
         [self addSubview:[self saveButton]];
         
         // Initializing application control buttons
@@ -185,9 +187,9 @@
     
     // Place the buttons
     NSRect buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 - 300, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
-    [[self stopButton] setFrame:buttonBox];
-    
-    buttonBox.origin.x -= 50;
+//    [[self stopButton] setFrame:buttonBox];
+//    
+//    buttonBox.origin.x -= 50;
     [[self runButton] setFrame:buttonBox];
     
     buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 + 270, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
@@ -225,6 +227,21 @@
 - (void)performMiniaturize:(id)sender
 {
     [[self controller] miniaturize]; 
+}
+
+- (void)saveDocument:(id)sender
+{
+    [[self controller] save]; 
+}
+
+- (void)newDocument:(id)sender
+{
+    [[self controller] create]; 
+}
+
+- (void)openDocument:(id)sender
+{
+    [[self controller] open];
 }
 
 @end

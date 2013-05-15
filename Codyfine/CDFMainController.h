@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CDFMainView.h"
+#import "CDFCompiler.h"
+#import "CDFLocalCompiler.h"
 
 @class CDFMainView; 
 
@@ -16,7 +18,8 @@
 @property (nonatomic) CDFMainView *view;
 @property (nonatomic) NSWindow *window;
 @property (nonatomic) BOOL edited;
-@property (nonatomic, readonly) NSString *currentFilename; 
+@property (nonatomic, readonly) NSString *currentFilename;
+@property (nonatomic, readonly) CDFCompiler *compiler; 
 
 - (void) close;
 
@@ -26,6 +29,8 @@
 
 - (void) save;
 
-- (void) create; 
+- (void) create;
+
+- (void) run; 
 
 @end

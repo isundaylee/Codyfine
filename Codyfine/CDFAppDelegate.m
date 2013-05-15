@@ -26,6 +26,10 @@
     
     // Insert the view
     [[self window] setContentView:[controller view]];
+    
+    // Linking the run menu item to the command
+    [[self runMenu] setTarget:controller];
+    [[self runMenu] setAction:@selector(run)]; 
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
