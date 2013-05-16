@@ -258,9 +258,18 @@
 - (void) selectErrorIndex:(NSInteger) index
 {
     [self setCurrentErrorIndex:index];
-    [[self view] setMessage:[[[self errors] objectAtIndex:[self currentErrorIndex]] objectForKey:@"error"]];
-    NSInteger line = [[[[self errors] objectAtIndex:[self currentErrorIndex]] objectForKey:@"line"] integerValue];
-    [[[self view] codeView] gotoLine: line column:0 animated:YES];
+    
+    NSDictionary *error = [[self errors] objectAtIndex:[self currentErrorIndex]];
+    
+    [[self view] setMessage:[error objectForKey:@"error"]];
+    
+    NSInteger line = [[error objectForKey:@"line"] integerValue];
+    NSInteger column = 0;
+    
+    if ([error objectForKey:@"column"])
+        column = [[error objectForKey:@"column"] intValue];
+    
+    [[[self view] codeView] gotoLine:line column:column animated:YES];
     [self tweakNavigators];
 }
 

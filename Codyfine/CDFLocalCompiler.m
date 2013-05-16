@@ -75,6 +75,21 @@
         NSArray *entries = [result componentsSeparatedByString:@"\n"];
         for (int i=0; i<[entries count]; i++) {
             NSString *entry = [entries objectAtIndex:i];
+            
+            // See if matches :line:column:
+            NSString *regexp1 = @":([0-9]*):([0-9]*): error:(.*)$";
+            NSRegularExpression *reg1 = [NSRegularExpression regularExpressionWithPattern:regexp1 options:NSRegularExpressionCaseInsensitive error:nil];
+            NSTextCheckingResult *result1 = [reg1 firstMatchInString:entry options:0 range:NSMakeRange(0, [entry length])];
+            
+            if (result1) {
+                NSNumber *line = [NSNumber numberWithInteger:[[entry substringWithRange:[result1 rangeAtIndex:1]] integerValue]];
+                NSNumber *column = [NSNumber numberWithInteger:[[entry substringWithRange:[result1 rangeAtIndex:2]] integerValue]];
+                NSString *error = [entry substringWithRange:[result1 rangeAtIndex:3]];
+                [errors addObject:[NSDictionary dictionaryWithObjectsAndKeys:line, @"line", column, @"column", error, @"error", nil]];
+                continue;
+            }
+            
+            // See if matches :line:
             NSString *regexp = @":([0-9]*): error:(.*)$";
             NSRegularExpression *reg = [NSRegularExpression regularExpressionWithPattern:regexp options:NSRegularExpressionCaseInsensitive error:nil];
             NSTextCheckingResult *result = [reg firstMatchInString:entry options:0 range:NSMakeRange(0, [entry length])];

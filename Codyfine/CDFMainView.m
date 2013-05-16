@@ -242,8 +242,6 @@
     [[[self messageField] textContainer] setContainerSize:NSMakeSize([[self messageScroll] contentSize].width, FLT_MAX)];
     [[[self messageField] textContainer] setWidthTracksTextView:YES];
     
-    NSLog(@"%lf\n", [self messageScroll].contentSize.height);
-    
     // Place the errors navigation buttons
     NSRect nextBox = NSMakeRect(messageBox.origin.x + messageBox.size.width - 25, messageBox.origin.y + 12, 16, 16);
     NSRect prevBox = NSMakeRect(messageBox.origin.x + 9, messageBox.origin.y + 12, 16, 16);
