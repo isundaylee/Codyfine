@@ -12,6 +12,29 @@
 
 @synthesize errors;
 
+/*
+ * Used to check if the compile environment is set
+ */
+- (BOOL)checkEnvironment
+{
+    // For now simply run a g++ -v to check if g++ is installed correctly
+    
+    NSTask *test = [[NSTask alloc] init];
+    
+    [test setLaunchPath:@"/usr/bin/g++"];
+    [test setArguments:[NSArray arrayWithObject:@"-v"]];
+    
+    @try {
+        [test launch];
+    } @catch (NSException *exception) {
+        return NO;
+    }
+    
+    [test waitUntilExit];
+    
+    return ([test terminationStatus] == 0);
+}
+
 - (BOOL)run:(NSString *)path
 {
     NSString *directory = [path stringByDeletingLastPathComponent];

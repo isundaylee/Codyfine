@@ -201,6 +201,12 @@
         return;
     }
     
+    if (![[self compiler] checkEnvironment]) {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Ahhh ... I don't seem to have anything to compile with ... Get me some compiler first 2333" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""];
+        [alert runModal];
+        return;
+    }
+    
     [[self view] setMessage:@"Compiling hard T_T ..."];
     
     BOOL result = [[self compiler] run:[self currentFilename]];

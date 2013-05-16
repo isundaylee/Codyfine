@@ -13,5 +13,6 @@
 @property (nonatomic, readonly) NSMutableArray *errors;
 
 - (BOOL) run:(NSString *)path;
+- (BOOL) checkEnvironment;
 
 @end
