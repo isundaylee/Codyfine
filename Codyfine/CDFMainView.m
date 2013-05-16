@@ -228,7 +228,7 @@
     [sepLine stroke];
     
     // Draw the message box border
-    NSRect messageBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 - 200, innerBounds.origin.y + innerBounds.size.height - 55, 400, 40);
+    NSRect messageBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 - 250, innerBounds.origin.y + innerBounds.size.height - 55, 500, 40);
     NSBezierPath *messageBoxBorder = [NSBezierPath bezierPathWithRoundedRect:messageBox xRadius:5.0 yRadius:5.0];
     [messageBoxBorder setLineWidth:2.0];
     [messageBoxBorder stroke];
@@ -250,7 +250,7 @@
     [[self maskingView] setFrame:nextBox];
     
     // Place the buttons
-    NSRect buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 - 300, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
+    NSRect buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 - 350, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
 //    [[self stopButton] setFrame:buttonBox];
 //    
 //    buttonBox.origin.x -= 50;
@@ -260,7 +260,7 @@
     buttonBox.origin.x -= 50;
     [[self runButton] setFrame:buttonBox];
     
-    buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 + 270, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
+    buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 + 320, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);
     [[self createButton] setFrame:buttonBox];
     
     buttonBox.origin.x += 50;

@@ -20,7 +20,7 @@
     
     // Resize and relocate the window
     NSRect frame = [[self window] frame];
-    frame.size = NSMakeSize(1024, 768);
+    frame.size = NSMakeSize(1150, 700);
     [[self window] setFrame:frame display:YES];
     [[self window] center]; 
     
