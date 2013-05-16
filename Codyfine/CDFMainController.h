@@ -23,6 +23,8 @@
 @property (nonatomic, readonly) NSMutableArray *errors;
 @property (nonatomic) NSInteger currentErrorIndex;
 
+@property (nonatomic) NSMenuItem *sandboxMenuItem;
+
 - (void) close;
 
 - (void) miniaturize;

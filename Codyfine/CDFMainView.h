@@ -22,6 +22,7 @@
 
 @property (nonatomic) NSButton *runButton;
 @property (nonatomic) NSButton *stopButton;
+@property (nonatomic) NSButton *sandboxButton; 
 
 @property (nonatomic) NSButton *createButton;
 @property (nonatomic) NSButton *openButton;

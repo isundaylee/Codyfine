@@ -106,6 +106,14 @@
 //        [[self stopButton] setBordered:NO];
 //        [self addSubview:[self stopButton]];
         
+        [self setSandboxButton:[NSButton new]];
+        [[self sandboxButton] setImage:[NSImage imageNamed:@"sandbox"]];
+        [[[self sandboxButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
+        [[self sandboxButton] setBordered:NO];
+        [[self sandboxButton] setTarget:[self controller]];
+        [[self sandboxButton] setAction:@selector(sandbox)];
+        [self addSubview:[self sandboxButton]]; 
+        
         [self setCreateButton:[[NSButton alloc] init]];
         [[self createButton] setImage:[NSImage imageNamed:@"create"]];
         [[[self createButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
@@ -244,6 +252,10 @@
 //    [[self stopButton] setFrame:buttonBox];
 //    
 //    buttonBox.origin.x -= 50;
+    
+    [[self sandboxButton] setFrame:buttonBox];
+    
+    buttonBox.origin.x -= 50;
     [[self runButton] setFrame:buttonBox];
     
     buttonBox = NSMakeRect(innerBounds.origin.x + innerBounds.size.width / 2 + 270, innerBounds.origin.y + innerBounds.size.height - 50, 30, 30);

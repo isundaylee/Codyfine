@@ -29,7 +29,12 @@
     
     // Linking the run menu item to the command
     [[self runMenu] setTarget:controller];
-    [[self runMenu] setAction:@selector(run)]; 
+    [[self runMenu] setAction:@selector(run)];
+    
+    [[self sandboxMenu] setTarget:controller];
+    [[self sandboxMenu] setAction:@selector(sandbox)];
+    
+    [controller setSandboxMenuItem:[self sandboxMenu]];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender

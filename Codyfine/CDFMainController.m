@@ -18,7 +18,21 @@
 @synthesize currentFilename;
 @synthesize compiler;
 @synthesize errors;
-@synthesize currentErrorIndex; 
+@synthesize currentErrorIndex;
+@synthesize sandboxMenuItem; 
+
+- (void)setSandboxMenuItem:(NSMenuItem *)newItem
+{
+    sandboxMenuItem = newItem;
+    [[self sandboxMenuItem] setEnabled:([self currentFilename] == nil)];
+}
+
+- (void)setCurrentFilename:(NSString *)newName
+{
+    [[[self view] sandboxButton] setEnabled:(newName == nil)];
+    [[self sandboxMenuItem] setEnabled:(newName == nil)]; 
+    currentFilename = newName;
+}
 
 - (void)textDidChange:(NSNotification *)notification
 {
@@ -106,7 +120,8 @@
                              "}\n"
                              ];
     
-    currentFilename = nil;
+    [self setCurrentFilename:nil];
+    
     [[[self view] codeView] setString:sampleCodes];
     [self setEdited:NO];
 }
@@ -144,7 +159,7 @@
         [savePanel setAllowedFileTypes:[NSArray arrayWithObjects:@"cpp", @"c", nil]];
         
         NSInteger result = [savePanel runModal];
-        currentFilename = [[savePanel URL] path];
+        [self setCurrentFilename:[[savePanel URL] path]];
         
         return [self writeFile];
     }
@@ -190,7 +205,7 @@
     }
     
     [[[self view] codeView] setString:content];
-    currentFilename = path;
+    [self setCurrentFilename:path];
     [self setEdited:NO];
     return YES;
 }
@@ -272,6 +287,38 @@
         } else {
             [[[self view] prevButton] setEnabled:NO]; 
         }
+    }
+}
+
+- (void)sandbox
+{
+    if ([self currentFilename])
+        return;
+    
+    NSString *filename = [[self temporaryFilePath] stringByAppendingString:@".cpp"];
+    
+    [self setCurrentFilename:filename];
+    
+    [self attemptSave];
+}
+
+- (NSString*)UUIDString
+{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    
+    return (__bridge NSString *) string; 
+}
+
+- (NSString*)temporaryFilePath
+{
+    while (true) {
+        NSString *randstr = [self UUIDString];
+        NSString *filename = [NSString stringWithFormat:@"/var/tmp/%@", randstr];
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:filename])
+            return filename;
     }
 }
 
