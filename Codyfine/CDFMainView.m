@@ -27,7 +27,7 @@
 @synthesize nextButton;
 @synthesize prevButton;
 
-@synthesize logoView;
+@synthesize logoButton;
 @synthesize maskingView; 
 
 @synthesize controller;
@@ -180,9 +180,13 @@
         [self addSubview:[self prevButton]];
         
         // Initializing the logo ivew
-        [self setLogoView:[NSImageView new]];
-        [[self logoView] setImage:[NSImage imageNamed:@"logo.png"]];
-        [self addSubview:[self logoView]];
+        [self setLogoButton:[NSButton new]];
+        [[self logoButton] setImage:[NSImage imageNamed:@"logo.png"]];
+        [[[self logoButton] cell] setImageScaling:NSImageScaleProportionallyUpOrDown];
+        [[self logoButton] setBordered:NO];
+        [[self logoButton] setTarget:[self controller]];
+        [[self logoButton] setAction:@selector(revealFile)];
+        [self addSubview:[self logoButton]];
     }
     
     return self;
@@ -214,7 +218,7 @@
     logoRect.origin.y = bounds.size.height - 85;
     logoRect.size.width = 70;
     logoRect.size.height = 70;
-    [[self logoView] setFrame:logoRect];
+    [[self logoButton] setFrame:logoRect];
     
     // Draw the seperation line
     NSBezierPath *sepLine = [[NSBezierPath alloc] init];

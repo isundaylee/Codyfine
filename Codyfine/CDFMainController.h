@@ -39,6 +39,8 @@
 
 - (void) next;
 
-- (void) prev; 
+- (void) prev;
+
+- (void) revealFile; 
 
 @end

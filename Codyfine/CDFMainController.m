@@ -322,4 +322,12 @@
     }
 }
 
+- (void)revealFile
+{
+    if (![self currentFilename])
+        return;
+    
+    [[NSWorkspace sharedWorkspace] selectFile:[self currentFilename] inFileViewerRootedAtPath:[[self currentFilename] stringByDeletingLastPathComponent]]; 
+}
+
 @end
