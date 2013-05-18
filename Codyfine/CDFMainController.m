@@ -159,6 +159,11 @@
         [savePanel setAllowedFileTypes:[NSArray arrayWithObjects:@"cpp", @"c", nil]];
         
         NSInteger result = [savePanel runModal];
+        
+        if (result != NSOKButton) {
+            return NO;
+        }
+        
         [self setCurrentFilename:[[savePanel URL] path]];
         
         return [self writeFile];
